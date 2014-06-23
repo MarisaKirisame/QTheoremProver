@@ -15,10 +15,11 @@ MainWindow::MainWindow(QWidget *parent) :
 		ui->pushButton_6,
 		ui->pushButton_7,
 		ui->pushButton_8,
-		ui->pushButton_9
+		ui->pushButton_9,
+		ui->pushButton_10
 	};
 	QSignalMapper *signalMapper = new QSignalMapper(this);
-	connect(signalMapper, SIGNAL(mapped( QString )), this, SIGNAL(AppendString( QString )));
+	connect(signalMapper, SIGNAL(mapped( const QString & )), this, SIGNAL(AppendString( const QString & )));
 	for ( auto i : buttons )
 	{
 		signalMapper->setMapping( i, i->text( ) );
