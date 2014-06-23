@@ -14,10 +14,10 @@ public:
 	~MainWindow( );
 	std::vector< QPushButton * > buttons;
 signals:
-	void AppendString( const QString & );
 private slots:
-	void on_pushButton_clicked();
-
+	void AppendString( const QString & );
+	void GiveFocus( );
+	void on_pushButton_pressed();
 private:
 	Ui::MainWindow *ui;
 };

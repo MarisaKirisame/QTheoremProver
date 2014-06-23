@@ -145,4 +145,8 @@
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
+ <slots>
+  <slot>AppendString()</slot>
+  <slot>GiveFocus()</slot>
+ </slots>
 </ui>

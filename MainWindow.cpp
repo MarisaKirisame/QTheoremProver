@@ -3,6 +3,7 @@
 #include <QSignalMapper>
 #include "theorem_prover/first_order_logic/praser.hpp"
 #include "QProofModel.hpp"
+#include <QtCore>
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
 	ui(new Ui::MainWindow)
@@ -21,12 +22,17 @@ MainWindow::MainWindow(QWidget *parent) :
 		ui->pushButton_10
 	};
 	QSignalMapper *signalMapper = new QSignalMapper(this);
-	connect(signalMapper, SIGNAL(mapped( const QString & )), this, SIGNAL(AppendString( const QString & )));
+	connect(signalMapper, SIGNAL(mapped( const QString & )), this, SLOT(AppendString( const QString & )));
 	for ( auto i : buttons )
 	{
 		signalMapper->setMapping( i, i->text( ) );
-		connect( i, SIGNAL(clicked()), signalMapper, SLOT(map()));
+		connect( i, SIGNAL(pressed()), signalMapper, SLOT(map()));
+		connect( i, SIGNAL(released()), this, SLOT(GiveFocus()) );
 	}
+	//setFocusPolicy( Qt::StrongFocus );
+	//setFocusProxy( ui->lineEdit );
+	connect( ui->pushButton, SIGNAL(released()), this, SLOT(GiveFocus()) );
+	ui->lineEdit->setFocus( Qt::OtherFocusReason );
 }
 
 MainWindow::~MainWindow( ) { delete ui; }
@@ -38,10 +44,13 @@ void MainWindow::AppendString( const QString & str )
 	ui->lineEdit->setText( new_str );
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::GiveFocus( ) { ui->lineEdit->setFocus( Qt::OtherFocusReason ); }
+
+void MainWindow::on_pushButton_pressed()
 {
 	auto res = theorem_prover::first_order_logic::prase( ui->lineEdit->text( ).toStdString( ) );
-	ui->label->setText( res->is_valid( ) ? "true" : "false" );
+	ui->label->setText( res->is_valid( ) ? "valid" : "falsible" );
 //	QProofModel * pm = new QProofModel( res, nullptr );
 //	ui->treeView->setModel( pm );
+	ui->lineEdit->setText( "" );
 }
