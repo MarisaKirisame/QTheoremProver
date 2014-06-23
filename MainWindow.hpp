@@ -15,6 +15,9 @@ public:
 	std::vector< QPushButton * > buttons;
 signals:
 	void AppendString( const QString & );
+private slots:
+	void on_pushButton_clicked();
+
 private:
 	Ui::MainWindow *ui;
 };

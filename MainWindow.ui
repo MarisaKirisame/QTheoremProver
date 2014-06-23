@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>560</width>
-    <height>300</height>
+    <width>272</width>
+    <height>286</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -107,6 +107,19 @@
     <item>
      <widget class="QTreeView" name="treeView"/>
     </item>
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -114,7 +127,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>560</width>
+     <width>272</width>
      <height>19</height>
     </rect>
    </property>

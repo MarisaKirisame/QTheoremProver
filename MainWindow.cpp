@@ -1,6 +1,8 @@
 #include "MainWindow.hpp"
 #include "ui_MainWindow.h"
 #include <QSignalMapper>
+#include "theorem_prover/first_order_logic/praser.hpp"
+#include "QProofModel.hpp"
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
 	ui(new Ui::MainWindow)
@@ -34,4 +36,12 @@ void MainWindow::AppendString( const QString & str )
 	QString new_str( ui->lineEdit->text( ) );
 	new_str.insert( ui->lineEdit->cursorPosition( ), str );
 	ui->lineEdit->setText( new_str );
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+	auto res = theorem_prover::first_order_logic::prase( ui->lineEdit->text( ).toStdString( ) );
+	ui->label->setText( res->is_valid( ) ? "true" : "false" );
+//	QProofModel * pm = new QProofModel( res, nullptr );
+//	ui->treeView->setModel( pm );
 }

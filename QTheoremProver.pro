@@ -13,9 +13,12 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        MainWindow.cpp
+        MainWindow.cpp \
+    QProofModel.cpp
 
-HEADERS  += MainWindow.hpp
+HEADERS  += MainWindow.hpp \
+    QProofModel.hpp
 
 FORMS    += MainWindow.ui
 CONFIG += C++11
+INCLUDEPATH += ../
