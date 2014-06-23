@@ -29,8 +29,8 @@ MainWindow::MainWindow(QWidget *parent) :
 		connect( i, SIGNAL(pressed()), signalMapper, SLOT(map()));
 		connect( i, SIGNAL(released()), this, SLOT(GiveFocus()) );
 	}
-	//setFocusPolicy( Qt::StrongFocus );
-	//setFocusProxy( ui->lineEdit );
+	setFocusPolicy( Qt::StrongFocus );
+	setFocusProxy( ui->lineEdit );
 	connect( ui->pushButton, SIGNAL(released()), this, SLOT(GiveFocus()) );
 	ui->lineEdit->setFocus( Qt::OtherFocusReason );
 }
@@ -50,7 +50,7 @@ void MainWindow::on_pushButton_pressed()
 {
 	auto res = theorem_prover::first_order_logic::prase( ui->lineEdit->text( ).toStdString( ) );
 	ui->label->setText( res->is_valid( ) ? "valid" : "falsible" );
-//	QProofModel * pm = new QProofModel( res, nullptr );
-//	ui->treeView->setModel( pm );
+	QProofModel * pm = new QProofModel( res, nullptr );
+	ui->treeView->setModel( pm );
 	ui->lineEdit->setText( "" );
 }
