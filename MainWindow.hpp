@@ -2,19 +2,19 @@
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
-
-namespace Ui {
-	class MainWindow;
-}
-
+#include <vector>
+namespace Ui { class MainWindow; }
+class QPushButton;
 class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 
 public:
 	explicit MainWindow(QWidget *parent = 0);
-	~MainWindow();
-
+	~MainWindow( );
+	std::vector< QPushButton * > buttons;
+signals:
+	void AppendString( const QString & );
 private:
 	Ui::MainWindow *ui;
 };

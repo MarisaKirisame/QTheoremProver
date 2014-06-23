@@ -18,3 +18,4 @@ SOURCES += main.cpp\
 HEADERS  += MainWindow.hpp
 
 FORMS    += MainWindow.ui
+CONFIG += C++11
