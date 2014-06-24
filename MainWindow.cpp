@@ -46,7 +46,7 @@ void MainWindow::AppendString( const QString & str )
 
 void MainWindow::GiveFocus( ) { ui->lineEdit->setFocus( Qt::OtherFocusReason ); }
 
-void MainWindow::on_pushButton_pressed()
+void MainWindow::on_pushButton_pressed( )
 {
 	auto res = theorem_prover::first_order_logic::prase( ui->lineEdit->text( ).toStdString( ) );
 	ui->label->setText( res->is_valid( ) ? "valid" : "falsible" );

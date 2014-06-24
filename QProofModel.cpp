@@ -1,12 +1,12 @@
 #include "QProofModel.hpp"
-
+#include "theorem_prover/first_order_logic/proof_tree.hpp"
 QProofModel::QProofModel( const std::shared_ptr< term > & ptr, QObject * parent ) :
-	QAbstractItemModel( parent ), pt( *( ptr->pt ) ) { }
+	QAbstractItemModel( parent ), pt( ptr->pt ) { }
 
 QModelIndex QProofModel::index( int row, int column, const QModelIndex & parent ) const
 {
 	if ( ! hasIndex( row, column, parent ) ) { return QModelIndex( ); }
-	const proof_tree & parent_pt = parent.isValid( ) ? * static_cast< proof_tree * >( parent.internalPointer( ) ) : pt;
+	const proof_tree & parent_pt = parent.isValid( ) ? * static_cast< proof_tree * >( parent.internalPointer( ) ) : * pt;
 	auto res = parent_pt.child[row];
 	return res ? createIndex( row, column, res.get( ) ) : QModelIndex( );
 }
@@ -34,7 +34,7 @@ QModelIndex QProofModel::parent( const QModelIndex & child ) const
 
 int QProofModel::rowCount(const QModelIndex & parent) const
 {
-	const proof_tree & parent_pt = parent.isValid( ) ? * static_cast< proof_tree * >( parent.internalPointer( ) ) : pt;
+	const proof_tree & parent_pt = parent.isValid( ) ? * static_cast< proof_tree * >( parent.internalPointer( ) ) : * pt;
 	return parent_pt.child.size( );
 }
 
@@ -45,6 +45,12 @@ QVariant QProofModel::data(const QModelIndex & index, int role) const
 	if ( ! index.isValid( ) ) { return QVariant( ); }
 	if ( role != Qt::DisplayRole ) { return QVariant( ); }
 	return QString( static_cast< proof_tree * >( index.internalPointer( ) )->str.c_str( ) );
+}
+
+QVariant QProofModel::headerData( int, Qt::Orientation orientation, int role ) const
+{
+	if ( orientation == Qt::Horizontal && role == Qt::DisplayRole ) { return QString( pt->str.c_str( ) ); }
+	return QVariant( );
 }
 
 #include "QProofModel.hpp"
