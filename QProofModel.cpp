@@ -6,8 +6,8 @@ QProofModel::QProofModel( const std::shared_ptr< term > & ptr, QObject * parent 
 QModelIndex QProofModel::index( int row, int column, const QModelIndex & parent ) const
 {
 	if ( ! hasIndex( row, column, parent ) ) { return QModelIndex( ); }
-	const proof_tree & parent_pt = parent.isValid( ) ? * static_cast< proof_tree * >( parent.internalPointer( ) ) : * pt;
-	auto res = parent_pt.child[row];
+	const proof_tree * parent_pt = parent.isValid( ) ? static_cast< proof_tree * >( parent.internalPointer( ) ) : pt.get( );
+	auto res = parent_pt->child[row];
 	return res ? createIndex( row, column, res.get( ) ) : QModelIndex( );
 }
 
@@ -17,17 +17,17 @@ QModelIndex QProofModel::parent( const QModelIndex & child ) const
 	const proof_tree & child_pt = * static_cast< proof_tree * >( child.internalPointer( ) );
 	if ( child_pt.has_parent( ) )
 	{
-		proof_tree & parent_pt = child_pt.parent;
+		proof_tree * parent_pt = child_pt.parent;
 		return createIndex( [&]( )->int
 		{
-			if ( parent_pt.has_parent( ) )
+			if ( parent_pt->has_parent( ) )
 			{
-				auto & pt = parent_pt.parent;
-				for ( size_t i = 0; i < pt.child.size( ); ++i ) { if ( pt.child[i].get( ) == & parent_pt ) { return i; } }
+				proof_tree * pt = parent_pt->parent;
+				for ( size_t i = 0; i < pt->child.size( ); ++i ) { if ( pt->child[i].get( ) == parent_pt ) { return i; } }
 				throw;
 			}
 			else  { return 0; }
-		}( ), 0, & parent_pt );
+		}( ), 0, parent_pt );
 	}
 	else { return QModelIndex( ); }
 }
