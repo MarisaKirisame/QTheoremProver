@@ -22,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
 		ui->pushButton_10
 	};
 	QSignalMapper *signalMapper = new QSignalMapper(this);
-	connect(signalMapper, SIGNAL(mapped( const QString & )), this, SLOT(AppendString( const QString & )));
+	connect(signalMapper, SIGNAL(mapped( const QString & )), ui->lineEdit, SLOT(AppendString( const QString & )));
 	for ( auto i : buttons )
 	{
 		signalMapper->setMapping( i, i->text( ) );
@@ -37,13 +37,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow( ) { delete ui; }
 
-void MainWindow::AppendString( const QString & str )
-{
-	QString new_str( ui->lineEdit->text( ) );
-	new_str.insert( ui->lineEdit->cursorPosition( ), str );
-	ui->lineEdit->setText( new_str );
-}
-
 void MainWindow::GiveFocus( ) { ui->lineEdit->setFocus( Qt::OtherFocusReason ); }
 
 void MainWindow::on_pushButton_pressed( )
@@ -54,3 +47,5 @@ void MainWindow::on_pushButton_pressed( )
 	ui->treeView->setModel( pm );
 	ui->lineEdit->setText( "" );
 }
+
+void MainWindow::on_lineEdit_returnPressed( ) { on_pushButton_pressed( ); }

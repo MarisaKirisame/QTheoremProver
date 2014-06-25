@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         MainWindow.cpp \
-    QProofModel.cpp
+    QProofModel.cpp \
+    QRememberPositionLineEdit.cpp
 
 HEADERS  += MainWindow.hpp \
-    QProofModel.hpp
+    QProofModel.hpp \
+    QRememberPositionLineEdit.hpp
 
 FORMS    += MainWindow.ui
 CONFIG += C++11

@@ -15,9 +15,9 @@ public:
 	std::vector< QPushButton * > buttons;
 signals:
 private slots:
-	void AppendString( const QString & );
 	void GiveFocus( );
 	void on_pushButton_pressed();
+	void on_lineEdit_returnPressed();
 private:
 	Ui::MainWindow *ui;
 };
