@@ -42,6 +42,7 @@ void MainWindow::GiveFocus( ) { ui->lineEdit->setFocus( Qt::OtherFocusReason ); 
 void MainWindow::on_pushButton_pressed( )
 {
 	auto res = theorem_prover::first_order_logic::prase( ui->lineEdit->text( ).toStdString( ) );
+	if ( ! res ) { return; }
 	ui->label->setText( res->is_valid( ) ? "valid" : "falsible" );
 	QProofModel * pm = new QProofModel( res, nullptr );
 	ui->treeView->setModel( pm );
