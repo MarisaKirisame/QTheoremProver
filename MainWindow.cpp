@@ -1,7 +1,7 @@
 #include "MainWindow.hpp"
 #include "ui_MainWindow.h"
 #include <QSignalMapper>
-#include "theorem_prover/first_order_logic/praser.hpp"
+#include "first_order_logic_prover/praser.hpp"
 #include "QProofModel.hpp"
 #include <QtCore>
 MainWindow::MainWindow(QWidget *parent) :
@@ -41,12 +41,17 @@ void MainWindow::GiveFocus( ) { ui->lineEdit->setFocus( Qt::OtherFocusReason ); 
 
 void MainWindow::on_pushButton_pressed( )
 {
-	auto res = theorem_prover::first_order_logic::prase( ui->lineEdit->text( ).toStdString( ) );
+	on_pushButton_clicked( );
+}
+
+void MainWindow::on_lineEdit_returnPressed( ) { on_pushButton_pressed( ); }
+
+void MainWindow::on_pushButton_clicked()
+{
+	auto res = first_order_logic::prase( ui->lineEdit->text( ).toStdString( ) );
 	if ( ! res ) { return; }
 	ui->label->setText( res->is_valid( ) ? "valid" : "falsible" );
 	QProofModel * pm = new QProofModel( res, nullptr );
 	ui->treeView->setModel( pm );
 	ui->lineEdit->setText( "" );
 }
-
-void MainWindow::on_lineEdit_returnPressed( ) { on_pushButton_pressed( ); }

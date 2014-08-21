@@ -18,6 +18,8 @@ private slots:
 	void GiveFocus( );
 	void on_pushButton_pressed();
 	void on_lineEdit_returnPressed();
+	void on_pushButton_clicked();
+
 private:
 	Ui::MainWindow *ui;
 };
