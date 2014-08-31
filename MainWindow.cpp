@@ -4,6 +4,7 @@
 #include "first_order_logic_prover/praser.hpp"
 #include "QProofModel.hpp"
 #include <QtCore>
+#include "first_order_logic_prover/gentzen_system.hpp"
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
 	ui(new Ui::MainWindow)
@@ -50,7 +51,7 @@ void MainWindow::on_pushButton_clicked()
 {
 	auto res = first_order_logic::prase( ui->lineEdit->text( ).toStdString( ) );
 	if ( ! res ) { return; }
-	ui->label->setText( res->is_valid( ) ? "valid" : "falsible" );
+	ui->label->setText( first_order_logic::gentzen_system::is_valid( * res ) ? "valid" : "falsible" );
 	QProofModel * pm = new QProofModel( * res, nullptr );
 	ui->treeView->setModel( pm );
 	ui->lineEdit->setText( "" );
