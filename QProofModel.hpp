@@ -8,7 +8,7 @@ class QProofModel : public QAbstractItemModel
 	Q_OBJECT
 public:
 	std::shared_ptr< first_order_logic::proof_tree > pt;
-	explicit QProofModel( const std::shared_ptr< first_order_logic::term > & ptr, QObject *parent = 0);
+	explicit QProofModel( const first_order_logic::term & term, QObject *parent = 0);
 	QModelIndex index(int row, int column, const QModelIndex &parent) const override;
 	QModelIndex parent(const QModelIndex &child) const override;
 	int rowCount(const QModelIndex &parent) const;

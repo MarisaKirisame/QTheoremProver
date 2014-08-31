@@ -1,7 +1,7 @@
 #include "QProofModel.hpp"
 #include "first_order_logic_prover/proof_tree.hpp"
-QProofModel::QProofModel( const std::shared_ptr< first_order_logic::term > & ptr, QObject * parent ) :
-	QAbstractItemModel( parent ), pt( ptr->pt ) { }
+QProofModel::QProofModel( const first_order_logic::term & term, QObject * parent ) :
+	QAbstractItemModel( parent ), pt( term.pt ) { }
 
 QModelIndex QProofModel::index( int row, int column, const QModelIndex & parent ) const
 {

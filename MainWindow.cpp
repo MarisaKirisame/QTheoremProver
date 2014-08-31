@@ -51,7 +51,7 @@ void MainWindow::on_pushButton_clicked()
 	auto res = first_order_logic::prase( ui->lineEdit->text( ).toStdString( ) );
 	if ( ! res ) { return; }
 	ui->label->setText( res->is_valid( ) ? "valid" : "falsible" );
-	QProofModel * pm = new QProofModel( res, nullptr );
+	QProofModel * pm = new QProofModel( * res, nullptr );
 	ui->treeView->setModel( pm );
 	ui->lineEdit->setText( "" );
 }
