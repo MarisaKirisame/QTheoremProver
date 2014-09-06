@@ -51,8 +51,9 @@ void MainWindow::on_pushButton_clicked()
 {
 	auto res = first_order_logic::prase( ui->lineEdit->text( ).toStdString( ) );
 	if ( ! res ) { return; }
-	ui->label->setText( first_order_logic::gentzen_system::is_valid( * res ) ? "valid" : "falsible" );
-	QProofModel * pm = new QProofModel( * res, nullptr );
+	auto ret = first_order_logic::gentzen_system::is_valid( * res );
+	ui->label->setText( ret.second ? "valid" : "falsible" );
+	QProofModel * pm = new QProofModel( ret.first, nullptr );
 	ui->treeView->setModel( pm );
 	ui->lineEdit->setText( "" );
 }

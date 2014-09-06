@@ -21,5 +21,5 @@ HEADERS  += MainWindow.hpp \
     QRememberPositionLineEdit.hpp
 
 FORMS    += MainWindow.ui
-CONFIG += C++11
+QMAKE_CXXFLAGS += -std=c++1y
 INCLUDEPATH += ../
