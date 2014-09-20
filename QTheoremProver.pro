@@ -23,3 +23,4 @@ HEADERS  += MainWindow.hpp \
 FORMS    += MainWindow.ui
 QMAKE_CXXFLAGS += -std=c++1y
 INCLUDEPATH += ../
+PRECOMPILED_HEADER = $$HEADERS
