@@ -5,8 +5,6 @@
 #include "QProofModel.hpp"
 #include <QtCore>
 #include "first_order_logic_prover/gentzen_system.hpp"
-#include "first_order_logic_prover/implementation/sentence.hpp"
-#include "first_order_logic_prover/implementation/substitution.hpp"
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
 	ui(new Ui::MainWindow)
