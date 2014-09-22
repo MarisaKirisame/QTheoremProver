@@ -41,12 +41,7 @@ MainWindow::~MainWindow( ) { delete ui; }
 
 void MainWindow::GiveFocus( ) { ui->lineEdit->setFocus( Qt::OtherFocusReason ); }
 
-void MainWindow::on_pushButton_pressed( )
-{
-	on_pushButton_clicked( );
-}
-
-void MainWindow::on_lineEdit_returnPressed( ) { on_pushButton_pressed( ); }
+void MainWindow::on_lineEdit_returnPressed( ) { on_pushButton_clicked( ); }
 
 void MainWindow::on_pushButton_clicked()
 {
