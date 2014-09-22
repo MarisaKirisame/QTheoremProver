@@ -5,6 +5,7 @@
 #include "QProofModel.hpp"
 #include <QtCore>
 #include "first_order_logic_prover/gentzen_system.hpp"
+#include <QMessageBox>
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
 	ui(new Ui::MainWindow)
@@ -50,7 +51,13 @@ void MainWindow::on_lineEdit_returnPressed( ) { on_pushButton_pressed( ); }
 void MainWindow::on_pushButton_clicked()
 {
 	auto res = first_order_logic::prase( ui->lineEdit->text( ).toStdString( ) );
-	if ( ! res ) { return; }
+	if ( ! res )
+	{
+		QMessageBox msgBox( this );
+		msgBox.setText("Error in parsing formula. Please check input or file an issue.");
+		msgBox.exec( );
+		return;
+	}
 	auto ret = first_order_logic::gentzen_system::is_valid( * res );
 	ui->label->setText( ret.second ? "valid" : "falsible" );
 	QProofModel * pm = new QProofModel( ret.first, nullptr );
