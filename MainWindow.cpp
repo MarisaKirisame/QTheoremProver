@@ -49,7 +49,7 @@ void MainWindow::on_pushButton_clicked()
 	if ( ! res )
 	{
 		QMessageBox msgBox( this );
-		msgBox.setText("Error in parsing formula. Please check input or file an issue.");
+		msgBox.setText( "Error in parsing formula. Please check input or file an issue." );
 		msgBox.exec( );
 		return;
 	}
