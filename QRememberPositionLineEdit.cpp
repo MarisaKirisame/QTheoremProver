@@ -1,5 +1,4 @@
 #include "QRememberPositionLineEdit.hpp"
-
 QRememberPositionLineEdit::QRememberPositionLineEdit(QWidget *parent) : QLineEdit(parent), position( 0 ) { }
 
 void QRememberPositionLineEdit::focusOutEvent(QFocusEvent *) { position = cursorPosition( ); }

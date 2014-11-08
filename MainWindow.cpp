@@ -6,6 +6,7 @@
 #include <QtCore>
 #include "first_order_logic_prover/gentzen_system.hpp"
 #include <QMessageBox>
+#include "first_order_logic_prover/first_order_logic.hpp"
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
 	ui(new Ui::MainWindow)
