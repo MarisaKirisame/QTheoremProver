@@ -7,19 +7,19 @@ namespace Ui { class MainWindow; }
 class QPushButton;
 class MainWindow : public QMainWindow
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	explicit MainWindow(QWidget *parent = 0);
-	~MainWindow( );
-	std::vector< QPushButton * > buttons;
+    explicit MainWindow(QWidget *parent = 0);
+    ~MainWindow( );
+    std::vector< QPushButton * > buttons;
 signals:
 private slots:
-	void GiveFocus( );
-	void on_lineEdit_returnPressed();
-	void on_pushButton_clicked();
+    void GiveFocus( );
+    void on_lineEdit_returnPressed();
+    void on_pushButton_clicked();
 private:
-	Ui::MainWindow *ui;
+    Ui::MainWindow *ui;
 };
 
 #endif // MAINWINDOW_HPP

@@ -7,8 +7,8 @@ void QRememberPositionLineEdit::focusInEvent(QFocusEvent *) { setCursorPosition(
 
 void QRememberPositionLineEdit::AppendString( const QString & str )
 {
-	QString new_str( text( ) );
-	new_str.insert( position, str );
-	position += str.size( );
-	setText( new_str );
+    QString new_str( text( ) );
+    new_str.insert( position, str );
+    position += str.size( );
+    setText( new_str );
 }
