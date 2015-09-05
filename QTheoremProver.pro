@@ -21,6 +21,7 @@ HEADERS  += MainWindow.hpp \
     QRememberPositionLineEdit.hpp
 
 FORMS    += MainWindow.ui
-QMAKE_CXXFLAGS += -std=c++1y
-INCLUDEPATH += ../
+QMAKE_CXXFLAGS += -std=c++1y -stdlib=libc++
+QMAKE_LFLAGS += -stdlib=libc++
+INCLUDEPATH += ../ ../hana/include/
 PRECOMPILED_HEADER = $$HEADERS

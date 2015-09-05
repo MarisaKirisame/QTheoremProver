@@ -2,8 +2,8 @@
 #define QPROOFMODEL_HPP
 
 #include <QAbstractItemModel>
-#include "first_order_logic_prover/term.hpp"
-#include "first_order_logic_prover/proof_tree.hpp"
+#include <first_order_logic_prover/sentence/term.hpp>
+#include <first_order_logic_prover/FOL/proof_tree.hpp>
 class QProofModel : public QAbstractItemModel
 {
     Q_OBJECT
